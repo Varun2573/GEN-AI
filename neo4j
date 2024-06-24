@@ -1,0 +1,102 @@
+CREATE
+  (nnrg:Institution {name: 'NNRG'}),
+  (dean:Role {name: 'Dean'}),
+  (chairman:Role {name: 'Chairman'}),
+  (director:Role {name: 'Director'}),
+  (hod:Role {name: 'HOD'}),
+  (cse:Department {name: 'CSE'}),
+  (firstYear:Year {name: 'first year'}),
+  (secondYear:Year {name: 'second year'}),
+  (thirdYear:Year {name: 'third year'}),
+  (fourthYear:Year {name: 'fourth year'}),
+  (mani:Student {name: 'mani'}),
+  (kapil:Student {name: 'kapil'}),
+  (koushik:Student {name: 'koushik'}),
+  (phani:Student {name: 'phani'}),
+  (akshith:Student {name: 'akshith'}),
+  (abhi:Student {name: 'abhi'}),
+  (naveen:Teacher {name: 'naveen'}),
+  (srikar:Teacher {name: 'srikar'}),
+  (rishi:Student {name: 'rishi'}),
+  (omkar:Student {name: 'omkar'}),
+  (shiva:Student {name: 'shiva'}),
+  (varun:Student {name: 'varun'}),
+  (rohith:Teacher {name: 'rohith'})
+
+// Create Relationships
+CREATE
+  (chairman)-[:OF]->(nnrg),
+  (dean)-[:OF]->(nnrg),
+  (director)-[:OF]->(nnrg),
+  (hod)-[:FOR]->(cse),
+  (nnrg)-[:HAS_DEPARTMENT]->(cse),
+  (cse)-[:HAS_YEAR]->(firstYear),
+  (cse)-[:HAS_YEAR]->(secondYear),
+  (cse)-[:HAS_YEAR]->(thirdYear),
+  (cse)-[:HAS_YEAR]->(fourthYear),
+
+  (mani)-[:BELONGS_TO]->(firstYear),
+  (kapil)-[:BELONGS_TO]->(firstYear),
+  (koushik)-[:BELONGS_TO]->(firstYear),
+  (phani)-[:BELONGS_TO]->(secondYear),
+  (akshith)-[:BELONGS_TO]->(secondYear),
+  (abhi)-[:BELONGS_TO]->(secondYear),
+  (rishi)-[:BELONGS_TO]->(thirdYear),
+  (omkar)-[:BELONGS_TO]->(thirdYear),
+  (shiva)-[:BELONGS_TO]->(thirdYear),
+  (varun)-[:BELONGS_TO]->(fourthYear),
+
+  (firstYear)-[:HAS_STUDENT]->(mani),
+  (firstYear)-[:HAS_STUDENT]->(kapil),
+  (firstYear)-[:HAS_STUDENT]->(koushik),
+  (secondYear)-[:HAS_STUDENT]->(phani),
+  (secondYear)-[:HAS_STUDENT]->(akshith),
+  (secondYear)-[:HAS_STUDENT]->(abhi),
+  (thirdYear)-[:HAS_STUDENT]->(rishi),
+  (thirdYear)-[:HAS_STUDENT]->(omkar),
+  (thirdYear)-[:HAS_STUDENT]->(shiva),
+  (fourthYear)-[:HAS_STUDENT]->(varun);
+
+
+
+
+for famly
+
+// Create family members and relationships
+CREATE 
+  (sangareddy:Person {name: 'sangareddy'}),
+  (laxmi:Person {name: 'laxmi'}),
+  (santhosh:Person {name: 'santhosh'}),
+  (swaroopa:Person {name: 'swaropa'}),
+  (naresh:Person {name: 'naresh'}),
+  (latha:Person {name: 'latha'}),
+  (pintu:Person {name: 'pintu'}),
+  (siri:Person {name: 'siri'}),
+  (cherry:Person {name: 'cherry'}),
+  (kushi:Person {name: 'kushi'}),
+
+  (laxmi)-[:SPOUSE_OF]->(sangareddy),
+  (swaroopa)-[:SPOUSE_OF]->(santhosh),
+  (latha)-[:SPOUSE_OF]->(naresh),
+
+  (sangareddy)-[:FATHER_OF]->(santhosh),
+  (sangareddy)-[:FATHER_OF]->(naresh),
+  (laxmi)-[:MOTHER_OF]->(santhosh),
+  (laxmi)-[:MOTHER_OF]->(naresh),
+  (santhosh)-[:FATHER_OF]->(pintu),
+  (santhosh)-[:FATHER_OF]->(siri),
+  (swaroopa)-[:MOTHER_OF]->(pintu),
+  (swaroopa)-[:MOTHER_OF]->(siri),
+  (naresh)-[:FATHER_OF]->(cherry),
+  (naresh)-[:FATHER_OF]->(kushi),
+  (latha)-[:MOTHER_OF]->(cherry),
+  (latha)-[:MOTHER_OF]->(kushi),
+
+  (sangareddy)-[:GRANDFATHER_OF]->(pintu),
+  (sangareddy)-[:GRANDFATHER_OF]->(siri),
+  (sangareddy)-[:GRANDFATHER_OF]->(kushi),
+  (sangareddy)-[:GRANDFATHER_OF]->(cherry),
+  (laxmi)-[:GRANDMOTHER_OF]->(pintu),
+  (laxmi)-[:GRANDMOTHER_OF]->(siri),
+  (laxmi)-[:GRANDMOTHER_OF]->(cherry),
+  (laxmi)-[:GRANDMOTHER_OF]->(kushi);
